@@ -113,19 +113,22 @@ public class Polisa {
             ocena = "bardzo wysokie";
         return "Poziom ryzyka: " + ocena;
     }
-    String ocenaRyzyka = pobierzPodsumowanieRyzyka();
-    
-    public String toString (){
-        return "Polisa {" +
-                "numer polisy = " + numerPolisy +
-                ", klient = " + klient + '\'' +
-                ", skladka bazowa = " + skladkaBazowa +
-                ", ocena ryzyka = " + ocenaRyzyka + '\'' +
-                ", wartosc pojazdu = " + wartoscPojazdu +
-                ", czy ma alarm = " + czyMaAlarm + '\'' +
-                ", czy bezszkodowy klient = " + czyBezszkodowyKlient + '\'';
 
+    @Override
+    public String toString() {
+        return "Polisa{" +
+                "numerPolisy='" + numerPolisy + '\'' +
+                ", klient='" + klient + '\'' +
+                ", skladkaBazowa=" + skladkaBazowa +
+                ", podsumowanieRyzyka='" + pobierzPodsumowanieRyzyka() + '\'' +
+                ", wartoscPojazdu=" + wartoscPojazdu +
+                ", czyMaAlarm=" + czyMaAlarm +
+                ", czyBezszkodowyKlient=" + czyBezszkodowyKlient +
+                ", skladkaKoncowa=" + obliczSkladkeKoncowa() +
+                ", skladkaOdnowienia=" + obliczSkladkeOdnowienia() +
+                '}';
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
