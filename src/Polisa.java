@@ -53,7 +53,7 @@ public class Polisa {
         skladka += poziomRyzyka * 120.0;
 
         if(wartoscPojazdu > 60000.0)
-            skladka += ;
+            skladka += 100.0;
 
         if(czyMaAlarm)
             skladka -= 50.0;
@@ -109,7 +109,7 @@ public class Polisa {
             ocena = "bardzo wysokie";
         return "Poziom ryzyka: " + ocena;
     }
-    double ocenaRyzyka = pobierzPodsumowanieRyzyka();
+    String ocenaRyzyka = pobierzPodsumowanieRyzyka();
     
     public String toString (){
         return "Polisa {" +
