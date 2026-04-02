@@ -41,6 +41,10 @@ public class Polisa {
         return wartoscPojazdu;
     }
 
+    public static int getLiczbeUtworzonychPolis() {
+        return liczbaUtworzonychPolis;
+    }
+
     public boolean isCzyMaAlarm() {
         return czyMaAlarm;
     }
@@ -64,35 +68,35 @@ public class Polisa {
         if(skladka < skladkaBazowa)
             skladka = skladkaBazowa;
 
-        return skladka;
+        return Math.round(skladka * 100.0) / 100.0;
     }
     public double obliczSkladkeOdnowienia(){
         double biezaca = obliczSkladkeKoncowa();
         double odnowieniowa = biezaca;
 
         if(poziomRyzyka == 4)
-            odnowieniowa *= 1.15;
+            odnowieniowa *= 1.1;
         else if(poziomRyzyka > 4)
             odnowieniowa *= 1.2;
 
         if(wartoscPojazdu > 60000.0)
-            odnowieniowa += 100.0;
+            odnowieniowa += 150.0;
 
         if(czyBezszkodowyKlient)
-            odnowieniowa *= 0.9;
+            odnowieniowa *= 0.92;
 
         if(czyMaAlarm)
             odnowieniowa *= 0.95;
 
-        double minimum = biezaca * 0.85;
+        double minimum = biezaca * 0.9;
         if(odnowieniowa < minimum)
             odnowieniowa = minimum;
 
-        double maksimum = biezaca * 1.3;
+        double maksimum = biezaca * 1.25;
         if(odnowieniowa > maksimum)
             odnowieniowa = maksimum;
 
-        return odnowieniowa;
+        return Math.round(odnowieniowa * 100.0) / 100.0;
     }
 
     public String pobierzPodsumowanieRyzyka(){
@@ -122,4 +126,16 @@ public class Polisa {
                 ", czy bezszkodowy klient = " + czyBezszkodowyKlient + '\'';
 
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Polisa polisa = (Polisa) o;
+        return numerPolisy != null && numerPolisy.equals(polisa.numerPolisy);
+    }
+    @Override
+    public int hashCode() {
+        return numerPolisy == null ? 0 : numerPolisy.hashCode();
+    }
+
 }
